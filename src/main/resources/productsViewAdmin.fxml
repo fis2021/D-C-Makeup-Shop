@@ -14,28 +14,11 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ProductsAdminController">
    <children>
 
-       <Text id="title-text" text="D-C-Makeup-Shop" GridPane.columnIndex="0" GridPane.columnSpan="2"
-             GridPane.rowIndex="0"/>
-
-       <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-
-       <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-       <Label text="Price:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-       <PasswordField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-
-       <Text fx:id="addProductMessage" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-       <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-           <Button onAction="#handleAddProductAction" text="Register"/>
-       </HBox>
-
-
       <BorderPane layoutX="-2.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
          <top>
             <TableView fx:id="table_info" prefHeight="390.0" prefWidth="600.0" BorderPane.alignment="CENTER">
               <columns>
-                  <TableColumn fx:id="col_id" prefWidth="75.0" text="Id" />
+                  <TableColumn fx:id="col_id" prefWidth="200.0" text="Id" />
                 <TableColumn fx:id="col_description" prefWidth="75.0" text="Description" />
                 <TableColumn fx:id="col_price" prefWidth="75.0" text="Price" />
                   <TableColumn fx:id="col_update" prefWidth="75.0" text="update" />

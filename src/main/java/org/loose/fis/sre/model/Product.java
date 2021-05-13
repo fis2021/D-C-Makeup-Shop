@@ -5,12 +5,16 @@ import org.dizitart.no2.objects.Id;
 import java.util.Objects;
 
 public class Product {
-    @Id
+
     private String id;
     private String description;
     private float price;
     //TODO: add image to product
     //private byte[] imageBytes;
+
+    public Product() {
+
+    }
 
     public Product(Product product) {
         this.description = product.getDescription();

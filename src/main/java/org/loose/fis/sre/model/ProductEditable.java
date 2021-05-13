@@ -1,5 +1,6 @@
 package org.loose.fis.sre.model;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import org.loose.fis.sre.controllers.ProductsAdminController;
 import org.loose.fis.sre.services.ProductService;
@@ -13,15 +14,28 @@ public class ProductEditable extends Product {
         this.delete = delete;
 
         update.setOnAction(e -> {
-                ProductEditable productEditable = ProductsAdminController.table_info_2.getSelectionModel().getSelectedItem();
+
+            //ProductEditable x = ProductsAdminController.table_info_2.getSelectionModel().getSelectedItem();
+            /*ProductService.updateProduct(new Product(
+                    x.getId(),
+                    x.getDescription(),
+                    x.getPrice()));*/
+                ObservableList<ProductEditable> productsEditable = ProductsAdminController.table_info_2.getSelectionModel().getSelectedItems();
                 try {
-                        ProductService.updateProduct(new Product(
-                                productEditable.getId(),
-                                productEditable.getDescription(),
-                                productEditable.getPrice()
-                        ));
+                    for (ProductEditable productEditable : productsEditable) {
+                        if (productEditable.getUpdate() == update) {
+                            ProductService.updateProduct(new Product(
+                                    productEditable.getId(),
+                                    productEditable.getDescription(),
+                                    productEditable.getPrice()));
+
+                            System.out.println("id " + productEditable.getId());
+                        }
+                    }
+
+
                     } catch (Exception ex) {
-                    ProductsAdminController.updateProductMessage.setText(ex.getMessage());
+                    //ProductsAdminController.updateProductMessage.setText(ex.getMessage());
                 }
         });
 
@@ -29,7 +43,7 @@ public class ProductEditable extends Product {
             for (ProductEditable productEditable : ProductsAdminController.data_table) {
                 if (productEditable.getUpdate() == delete) {
                     ProductService.deleteProduct(productEditable.getId());
-
+                    //TODO: refresh table after product deletion
                 }
             }
         });
@@ -74,6 +88,14 @@ public class ProductEditable extends Product {
 
     public void setPrice(float price) {
         super.setPrice(price);
+    }
+
+    public String getId() {
+        return super.getId();
+    }
+
+    public void setId(String id) {
+        super.setId(id);
     }
 
 }

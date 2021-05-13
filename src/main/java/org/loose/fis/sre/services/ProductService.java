@@ -23,14 +23,27 @@ public class ProductService {
                 .openOrCreate("test", "test");
 
         productRepository = database.getRepository(Product.class);
+        //deleteAllProducts();
+    }
+
+    public static void deleteAllProducts() {
+        for (Product product : productRepository.find()) {
+           productRepository.remove(product);
+
+        }
+    }
+
+    public static void generateRandomProducts() {
+        for (int i = 0; i < 5; i++) {
+            addProduct("description " + i, (float) i);
+        }
     }
 
     public static void addProduct(String description, float price) {
         String uuid = UUID.randomUUID().toString();
-        while (checkProductDoesNotAlreadyExist(uuid) == true) {
-
-        }
+        System.out.println("id nou: " + uuid);
         productRepository.insert(new Product(uuid, description, price));
+        checkProductDoesNotAlreadyExist(uuid);
     }
 
     public static List<Product> getProductList() {
@@ -52,14 +65,25 @@ public class ProductService {
         productRepository.remove(aux);
     }
 
-    public static void updateProduct(Product product) {
-        productRepository.update(product);
+    public static void updateProduct(Product updatedProduct) {
+        Product aux = null;
+        for (Product  product: productRepository.find()) {
+            if (updatedProduct.getId().equals(product.getId())) {
+                aux = product;
+            }
+        }
+
+        productRepository.remove(aux);
+
+        productRepository.insert(updatedProduct);
     }
 
     private static boolean checkProductDoesNotAlreadyExist(String id) {
         for (Product product : productRepository.find()) {
             if (Objects.equals(id, product.getId()))
-               return true;
+                System.out.println("id exists: " + id);
+            System.out.println(product);
+
         }
 
         return false;

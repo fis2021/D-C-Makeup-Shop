@@ -19,27 +19,10 @@ import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.Product;
 import org.loose.fis.sre.model.ProductEditable;
 import org.loose.fis.sre.services.UserService;
+import javafx.collections.ListChangeListener;
 
 public class ProductsAdminController implements Initializable {
 
-
-    @FXML
-    private Text addProductMessage;
-
-
-    @FXML
-    public static Text updateProductMessage;
-
-    @FXML
-    private Text description;
-
-    @FXML
-    private TextField descriptionField;
-
-    @FXML
-    private Text price;
-    @FXML
-    private PasswordField priceField;
 
     @FXML
     private TableView<ProductEditable> table_info;
@@ -87,10 +70,12 @@ public class ProductsAdminController implements Initializable {
     }
 
     private void editableCols() {
-       /* col_id.setCellFactory(TextFieldTableCell.forTableColumn());
-        col_id.setOnEditCommit(e->{
+        col_id.setCellFactory(TextFieldTableCell.forTableColumn());
+        col_id.setEditable(false);
+
+         col_id.setOnEditCommit(e->{
             e.getTableView().getItems().get(e.getTablePosition().getRow()).setId(e.getNewValue());
-        });*/
+        });
 
 
         col_description.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -105,13 +90,26 @@ public class ProductsAdminController implements Initializable {
 
         table_info.setEditable(true);
 
+        data_table = FXCollections.observableArrayList();
+
+        /*data_table.addListener(new ListChangeListener<ProductEditable>(){
+            @Override
+            public void onChanged(javafx.collections.ListChangeListener.Change<? extends ProductEditable> pChange) {
+                while (pChange.next()) {
+                    table_info_2 = table_info;
+                }
+            }
+        });*/
+
     }
 
      private void loadData() {
          table_info.getItems().clear();
 
-         data_table = FXCollections.observableArrayList();
          List<Product> products = ProductService.getProductList();
+
+         System.out.println("aici afisez lista");
+         System.out.println(products);
 
          for (Product product : products){
              data_table.add(new ProductEditable(product, new Button("update"), new Button("delete")));
@@ -119,16 +117,6 @@ public class ProductsAdminController implements Initializable {
          table_info.setItems(data_table);
      }
 
-    @FXML
-    public void handleAddProductAction() {
-        try {
-            float price = Float.parseFloat(priceField.getText());
-            ProductService.addProduct(descriptionField.getText(), price);
-            addProductMessage.setText("Product added successfully!");
-            loadData();
-        } catch (Exception e) {
-            addProductMessage.setText(e.getMessage());
-        }
-    }
+
 
 }

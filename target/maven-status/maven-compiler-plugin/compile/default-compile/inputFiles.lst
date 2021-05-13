@@ -1,0 +1,16 @@
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\model\Product.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\exceptions\ProductAlreadyExistsException.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\Main.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\controllers\ProductsAdminController.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\services\FileSystemService.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\services\UserService.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\model\ProductEditable.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\controllers\AdminMainController.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\controllers\RegistrationController.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\services\ProductService.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\controllers\AddProductAdmin.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\exceptions\UserNotFoundException.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\model\User.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\exceptions\UsernameAlreadyExistsException.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\controllers\LoginController.java
+D:\Programe\D-C-Makeup-Shop\src\main\java\org\loose\fis\sre\controllers\StartController.java

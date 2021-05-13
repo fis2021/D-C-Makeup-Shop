@@ -18,8 +18,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         initDirectory();
         UserService.initDatabase();
-       Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("registration.fxml"));
-        primaryStage.setTitle("Registration Example");
+        ProductService.initDatabase();
+       // ProductService.generateRandomProducts();
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("adminmain.fxml"));
+        primaryStage.setTitle("D&C Make-up Shop Start");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
@@ -27,7 +29,6 @@ public class Main extends Application {
     private void initDirectory() {
         Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
 
-        System.out.println("aici");
         if (!Files.exists(applicationHomePath))
             applicationHomePath.toFile().mkdirs();
     }
