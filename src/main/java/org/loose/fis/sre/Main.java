@@ -11,23 +11,26 @@ import org.loose.fis.sre.services.UserService;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import java.util.Objects;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        initDirectory();
+        //initDirectory();
         UserService.initDatabase();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("start.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("start.fxml")));
         primaryStage.setTitle("D&C Make-up Shop Start");
         primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
-    private void initDirectory() {
+    /*private void initDirectory() {
         Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
         if (!Files.exists(applicationHomePath))
             applicationHomePath.toFile().mkdirs();
-    }
+    }*/
 
 
     public static void main(String[] args) {

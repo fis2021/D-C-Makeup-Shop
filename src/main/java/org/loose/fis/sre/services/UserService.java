@@ -1,5 +1,7 @@
 package org.loose.fis.sre.services;
 
+import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
+
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
@@ -16,13 +18,20 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 public class UserService {
 
     private static ObjectRepository<User> userRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+        FileSystemService.initDirectory();
+        database = Nitrite.builder()
                 .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
+    }
+
+    public static void closeDatabase() {
+        database.close();
+
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
@@ -43,7 +52,8 @@ public class UserService {
         for (User user : userRepository.find()) {
             //System.out.println("username " + user.getUsername());
             if (Objects.equals(username, user.getUsername())
-                && Objects.equals(encodePassword(username, password), user.getPassword()))  {
+                && encodePassword(username, password).equals(user.getPassword()))  {
+                System.out.println("user si pass gasite");
                 return user;
             }
         }
@@ -79,4 +89,43 @@ public class UserService {
         return md;
     }
 
-}
+   /* public static User loggedUser(String username,String password) throws InvalidUsernameException, InvalidPasswordException {
+        int ok1 = 0, ok2 = 0;
+        for(User user : userRepository.find())
+        {
+            if (Objects.equals(username, user.getUsername()))
+            {   ok1 = 1;
+                if (encodePassword(username, password).equals(user.getPassword())) {
+                    ok2 = 1;
+                    return user;
+                }
+            }
+        }
+        if(ok1 == 0)
+            throw new InvalidUsernameException("Invalid username");
+        if(ok2 == 0)
+            throw new InvalidPasswordException("Invalid password");
+        return null;
+    }*/
+
+
+    /*public void handleLoginAction(ActionEvent event) throws Exception
+    {
+        try {
+            UserService.loginUncompletedFields(username.getText(), password.getText());
+            LoggedUser.setLoggedUser(UserService.loggedUser(username.getText(), password.getText()));
+            if (UserService.getUserRole(username.getText()).equals("Junior Chef")) {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("junior.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Junior Chef");
+            } else {
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("head.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Head Chef");
+            }
+            stage.setScene(new Scene(root, 1280, 720));
+            stage.show();
+        } catch(UncompletedFieldsException | InvalidUsernameException | InvalidPasswordException e) {
+            loginMessage.setText(e.getMessage());
+        }*/
+    }
