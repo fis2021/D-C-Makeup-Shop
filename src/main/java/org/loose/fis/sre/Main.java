@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.loose.fis.sre.services.FileSystemService;
+import org.loose.fis.sre.services.OrderService;
 import org.loose.fis.sre.services.ProductService;
 import org.loose.fis.sre.services.UserService;
 
@@ -19,6 +20,7 @@ public class Main extends Application {
         initDirectory();
         UserService.initDatabase();
         ProductService.initDatabase();
+        OrderService.initDatabase();
        // ProductService.generateRandomProducts();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("adminmain.fxml"));
         primaryStage.setTitle("D&C Make-up Shop Start");

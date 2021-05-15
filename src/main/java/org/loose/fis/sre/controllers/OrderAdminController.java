@@ -18,30 +18,33 @@ import org.loose.fis.sre.services.ProductService;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.Product;
 import org.loose.fis.sre.model.ProductEditable;
+import org.loose.fis.sre.model.Order;
 import org.loose.fis.sre.services.UserService;
+import org.loose.fis.sre.services.OrderService;
 import javafx.collections.ListChangeListener;
 
-public class ProductsAdminController implements Initializable {
+public class OrderAdminController implements Initializable {
 
 
     @FXML
-    private TableView<ProductEditable> table_info;
+    private TableView<Order> table_info;
 
-    public static TableView<ProductEditable> table_info_2;
-
-    @FXML
-    private TableColumn<ProductEditable, String> col_description;
+    public static TableView<Order> table_info_2;
 
     @FXML
-    private TableColumn<ProductEditable, Float> col_price;
+    private TableColumn<Order, String> order;
 
     @FXML
-    private TableColumn<ProductEditable, Button> col_update;
+    private TableColumn<Order, String> username;
 
     @FXML
-    private TableColumn<ProductEditable, Button> col_delete;
+    private TableColumn<Order, String> col_description;
 
-    public static ObservableList<ProductEditable> data_table;
+    @FXML
+    private TableColumn<Order, Float> col_price;
+
+
+    public static ObservableList<Order> data_table;
 
     @Override
     public void  initialize(URL location, ResourceBundle resources) {
@@ -55,29 +58,21 @@ public class ProductsAdminController implements Initializable {
     }
 
     private void intiCols() {
-       // col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col_update.setCellValueFactory(new PropertyValueFactory<>("update"));
-        //cocol_update.
-
-        col_delete.setCellValueFactory(new PropertyValueFactory<>("delete"));
+        order.setCellValueFactory(new PropertyValueFactory<>("id"));
+        username.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        col_description.setCellValueFactory(new PropertyValueFactory<>("orderedProducts"));
+        col_price.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
 
         editableCols();
     }
 
     private void editableCols() {
 
-
+        order.setCellFactory(TextFieldTableCell.forTableColumn());
+        username.setCellFactory(TextFieldTableCell.forTableColumn());
         col_description.setCellFactory(TextFieldTableCell.forTableColumn());
-        col_description.setOnEditCommit(e-> {
-            e.getTableView().getItems().get(e.getTablePosition().getRow()).setDescription(e.getNewValue());
-        });
 
         col_price.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
-        col_price.setOnEditCommit(e-> {
-                e.getTableView().getItems().get(e.getTablePosition().getRow()).setPrice(e.getNewValue());
-        });
 
         table_info.setEditable(true);
 
@@ -94,20 +89,18 @@ public class ProductsAdminController implements Initializable {
 
     }
 
-     private void loadData() {
-         table_info.getItems().clear();
+    private void loadData() {
+        table_info.getItems().clear();
 
-         List<Product> products = ProductService.getProductList();
+        List<Order> orders = OrderService.getOrderList();
 
-         System.out.println("aici afisez lista");
-         System.out.println(products);
 
-         for (int i = 0; i < products.size(); ++i) {
-                Product product = products.get(i);
-             data_table.add(new ProductEditable(product.getDescription(), product.getPrice(), new Button("update"), new Button("delete")));
-         }
-         table_info.setItems(data_table);
-     }
+        for (int i = 0; i < orders.size(); ++i) {
+            Order order = orders.get(i);
+            data_table.add(order);
+        }
+        table_info.setItems(data_table);
+    }
 
 
 

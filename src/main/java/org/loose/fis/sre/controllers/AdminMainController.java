@@ -28,7 +28,23 @@ public class AdminMainController {
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/productsViewAdmin.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setTitle("D&C Make-up Shop Admin Products View");
+            stage.setTitle("D&C Make-up Shop Admin Order View");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    @FXML
+    public void handleViewOrdersAction() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/TheOrderViewAdmin.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("D&C Make-up Shop Admin Order View");
             stage.setScene(new Scene(root1));
             stage.show();
 

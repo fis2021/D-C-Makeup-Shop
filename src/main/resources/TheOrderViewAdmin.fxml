@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.OrderAdminController">
+<children>
+
+    <BorderPane layoutX="-2.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+        <top>
+            <TableView fx:id="table_info" prefHeight="390.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn fx:id="order" prefWidth="75.0" text="Order Id" />
+                    <TableColumn fx:id="username" prefWidth="75.0" text="Buyer" />
+                    <TableColumn fx:id="col_description" prefWidth="75.0" text="Ordered products" />
+                    <TableColumn fx:id="col_price" prefWidth="75.0" text="Total Price" />
+                </columns>
+            </TableView>
+        </top>
+    </BorderPane>
+
+    <Text fx:id="updateProductMessage" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+</children>
+</AnchorPane>

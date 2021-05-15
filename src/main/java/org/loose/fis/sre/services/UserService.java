@@ -11,6 +11,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
+import java.util.*;
+
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class UserService {
@@ -77,6 +79,10 @@ public class UserService {
             throw new IllegalStateException("SHA-512 does not exist!");
         }
         return md;
+    }
+
+    public static List<User> getUsersList() {
+        return userRepository.find().toList();
     }
 
 }

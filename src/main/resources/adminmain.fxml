@@ -21,11 +21,15 @@
           GridPane.rowIndex="0"/>
 
 
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
         <Button onAction="#handleAddProductAction" text="Add Product"/>
     </HBox>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="5" GridPane.rowIndex="7">
         <Button onAction="#handleUpdateProductsAction" text="View Products"/>
+    </HBox>
+
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="10" GridPane.rowIndex="7">
+        <Button onAction="#handleViewOrdersAction" text="View Orders"/>
     </HBox>
 </GridPane>

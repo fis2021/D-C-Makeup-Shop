@@ -17,7 +17,7 @@ public class ProductService {
 
     public static void initDatabase() {
 
-        System.out.println("helloooo");
+        //System.out.println("helloooo");
         Nitrite database = Nitrite.builder()
                 .filePath(getPathToFile("products.db").toFile())
                 .openOrCreate("test", "test");
@@ -76,6 +76,22 @@ public class ProductService {
         productRepository.remove(aux);
 
         productRepository.insert(updatedProduct);
+    }
+
+
+    public static void updateProduct(int contor, String description, float price) {
+        Product aux = null;
+       // int contor = 0;
+
+        List<Product> products = productRepository.find().toList();
+        aux = products.get(contor);
+
+       // productRepository.remove(aux);
+
+        aux.setDescription(description);
+        aux.setPrice(price);
+
+        productRepository.update(aux);
     }
 
     private static boolean checkProductDoesNotAlreadyExist(String id) {
