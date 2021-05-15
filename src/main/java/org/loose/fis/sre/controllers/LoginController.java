@@ -34,30 +34,7 @@ public class LoginController {
     @FXML
     private TextField usernameField;
 
-    public void openMainPageForRole(String resourceFilename, String titleStage, ActionEvent event) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(resourceFilename));
-       /* root = FXMLLoader.load(this.getClass().getResource(resourceFilename));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(titleStage);
-        stage.setScene(new Scene(root,  1280, 720));
-        stage.show();*/
-
-       // getClass().getRes
-        String canonicalPath = new File("./src/java/resources/" + resourceFilename).getCanonicalPath();
-        System.out.println("path" + getClass().getResource(resourceFilename) + " " + canonicalPath);
-
-        URL fxmlURL = Paths.get(canonicalPath);
-
-
-
-        FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL); //this.getClass().getResource(resourceFilename));
-       // Parent root1 =  FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/login.fxml"));
-         Parent root = fxmlLoader.load();
-        stage = new Stage();
-        stage.setTitle(titleStage);
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
+    public void openMainPageForRole(String resourceFilename, String titleStage, ActionEvent event) throws IOException { }
 
     @FXML
     public void handleLoginAction(ActionEvent event) {
